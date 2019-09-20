@@ -33,8 +33,10 @@ public class TutorialsBasicApplication {
 		System.out.println("binSearch:::" + binSearch);
 		System.out.println("binSearch1:::" + binSearch1);//When prototype scope is given, new instance is created
 		
-		int result = binSearch.binarySearch(new int[] { 124, 99, 234, 128 }, 124);
-		System.out.println(result);
+		/*
+		 * int result = binSearch.binarySearch(new int[] { 124, 99, 234, 128 }, 124);
+		 * System.out.println(result);
+		 */
 		// com.aby.spring.tutorials.BubbleSortAlgorithm@180da663
 		// 3
 	}
