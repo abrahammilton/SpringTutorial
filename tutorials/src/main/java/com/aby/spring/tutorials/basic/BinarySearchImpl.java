@@ -1,8 +1,5 @@
 package com.aby.spring.tutorials.basic;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.aby.spring.tutorials.TutorialsComponentScanApplication;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -53,14 +48,10 @@ public class BinarySearchImpl {
 		return 3;
 	}
 	
-	@PostConstruct
-	public void postConstruct() {
-		log.info("Post Construct");
-	}
-	
-	@PreDestroy
-	public void preDestroy() {
-		log.info("Pre destroy");
-	}
+	/*
+	 * @PostConstruct public void postConstruct() { log.info("Post Construct"); }
+	 * 
+	 * @PreDestroy public void preDestroy() { log.info("Pre destroy"); }
+	 */
 
 }

@@ -1,12 +1,14 @@
 package com.aby.spring.tutorials;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import com.aby.spring.tutorials.basic.BinarySearchImpl;
 
-@SpringBootApplication
+@Configuration//This anotation is used while using spring core and not spring boot
+@ComponentScan
 public class TutorialsBasicApplication {
 
 	// Should tell spring the below
@@ -25,14 +27,23 @@ public class TutorialsBasicApplication {
 		// com.aby.spring.tutorials.BubbleSortAlgorithm@3cd1a2f1
 
 		// Application context manages all beans
-		ApplicationContext applContext = SpringApplication.run(TutorialsBasicApplication.class, args);
-		BinarySearchImpl binSearch = applContext.getBean(BinarySearchImpl.class);
-		BinarySearchImpl binSearch1 = applContext.getBean(BinarySearchImpl.class);
-		// one bean is instantiated for any number of applicationContexts -> singleton. 
-		// Beans are singleton by default
-		System.out.println("binSearch:::" + binSearch);
-		System.out.println("binSearch1:::" + binSearch1);//When prototype scope is given, new instance is created
-		
+		try(AnnotationConfigApplicationContext applContext = 
+				new AnnotationConfigApplicationContext(TutorialsBasicApplication.class)) {
+			
+			/*
+			 * AnnotationConfigApplicationContext applContext = 
+			 * new AnnotationConfigApplicationContext(TutorialsBasicApplication.class); // -> Spring core impl
+			 *	SpringApplication.run(TutorialsBasicApplication.class, args); -> Spring boot impl
+			 */
+			BinarySearchImpl binSearch = applContext.getBean(BinarySearchImpl.class);
+			BinarySearchImpl binSearch1 = applContext.getBean(BinarySearchImpl.class);
+			// one bean is instantiated for any number of applicationContexts -> singleton. 
+			// Beans are singleton by default
+			System.out.println("binSearch:::" + binSearch);
+			System.out.println("binSearch1:::" + binSearch1);//When prototype scope is given, new instance is created
+			
+			//applContext.close();-> try handles this
+		}
 		/*
 		 * int result = binSearch.binarySearch(new int[] { 124, 99, 234, 128 }, 124);
 		 * System.out.println(result);
