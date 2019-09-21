@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-class SomeMockAnnotationImplTest {
+public class SomeMockAnnotationImplTest {
 
 	@Mock
 	DataService dataSvc;
@@ -22,7 +23,7 @@ class SomeMockAnnotationImplTest {
 	@Test
 	public void testFindGreatest() {
 		
-		when(dataSvc.retrieveAllData()).thenReturn(new int[] {24, 15, 47});
+		Mockito.when(dataSvc.retrieveAllData()).thenReturn(new int[] {24, 15, 47});
 		int result = impl.findGreatest();
 		assertEquals(47, result);
 	}
@@ -31,7 +32,7 @@ class SomeMockAnnotationImplTest {
 	void testFindGreatest_1() {
 		
 		DataService mocking = mock(DataService.class);
-		when(mocking.retrieveAllData()).thenReturn(new int[] {47});
+		Mockito.when(mocking.retrieveAllData()).thenReturn(new int[] {47});
 		SomeImpl impl = new SomeImpl(mocking);
 		int result = impl.findGreatest();
 		assertEquals(47, result);

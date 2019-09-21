@@ -35,7 +35,7 @@ public class BinarySearchImpl {
 	 * public void setSa(SortAlgorithm sa) { this.sa = sa; }
 	 */
 
-	public int binarySearch(int[] num, int num2Searchß) {
+	public int binarySearch(int[] num, int num2Search) {
 
 		int[] sortedNumbers = algorithm.sort(num);
 		System.out.println(algorithm);
